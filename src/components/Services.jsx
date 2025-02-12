@@ -1,19 +1,22 @@
 import { useState } from "react";
 
-const ServiceCard = ({ icon, title, description }) => {
+const ServiceCard = ({ icon, title, description, isSelected, onClick }) => {
   return (
-    <div className="cursor-pointer hover:bg-gray-100 bg-slate-100 p-5 text-center shadow-lg rounded-xl space-y-4 flex-1">
+    <div 
+      className={`cursor-pointer p-5 text-center shadow-lg rounded-xl space-y-4 flex-1 transition-colors duration-300 ${
+        isSelected ? 'bg-blue-200' : 'bg-slate-100 hover:bg-gray-100'
+      }`}
+      onClick={onClick}
+    >
       <i className={`text-5xl ${icon}`}></i>
       <h2 className="text-4xl">{title}</h2>
       <p className="text-gray-600 leading-relaxed">{description}</p>
-      <button className="px-3 py-2 bg-orange-500 text-2xl rounded-full shadow-lg hover:bg-orange-600 transition-colors">
-        Check
-      </button>
     </div>
   );
 };
 
 const Services = () => {
+  const [selectedCard, setSelectedCard] = useState(null);
   const [services] = useState([
     {
       id: "1",
@@ -47,6 +50,10 @@ const Services = () => {
     },
   ]);
 
+  const handleCardClick = (id) => {
+    setSelectedCard(selectedCard === id ? null : id);
+  };
+
   return (
     <div className="py-14">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -60,6 +67,8 @@ const Services = () => {
               icon={service.icon}
               title={service.title}
               description={service.description}
+              isSelected={selectedCard === service.id}
+              onClick={() => handleCardClick(service.id)}
             />
           ))}
         </div>

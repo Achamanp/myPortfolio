@@ -4,6 +4,7 @@ import Typed from "typed.js";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { Mail, Github, Linkedin, Instagram } from 'lucide-react';
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   const el = useRef(null);
@@ -67,12 +68,12 @@ const Banner = () => {
             </div>
 
             <div className="pt-4">
-              <a
-                href="/contact"
+              <Link
+                to="/contact"
                 className="inline-block px-6 py-3 text-lg font-semibold text-white bg-purple-600 rounded-full hover:bg-purple-700 transition-colors"
               >
                 Contact Me
-              </a>
+              </Link>
             </div>
           </div>
 

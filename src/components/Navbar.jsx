@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom'; // Add this import
 
 function Navbar() {
   const [brandName] = useState("Achaman Pathak");
@@ -26,12 +27,10 @@ function Navbar() {
     // Replace this URL with your actual CV file URL
     const cvUrl = '/path-to-your-cv.pdf';
     
-    // Create a temporary link element
     const link = document.createElement('a');
     link.href = cvUrl;
     link.download = 'Achaman_Pathak_CV.pdf';
     
-    // Programmatically click the link to trigger download
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -43,25 +42,23 @@ function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Brand Name */}
           <div className="flex-shrink-0">
-            <h1 className="text-xl font-bold text-gray-800">{brandName}</h1>
+            <Link to="/" className="text-xl font-bold text-gray-800">{brandName}</Link>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center justify-end w-full">
-              {/* Right-Aligned Navigation Links */}
               <div className="flex space-x-6">
                 {menuLinks.map((link) => (
-                  <a
+                  <Link
                     key={link.id}
-                    href={link.link}
+                    to={link.link}
                     className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors"
                   >
                     {link.title}
-                  </a>
+                  </Link>
                 ))}
               </div>
 
-              {/* Download CV Button - At the Rightmost End */}
               <button
                 onClick={handleDownloadCV}
                 className="ml-6 bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors"
@@ -69,8 +66,6 @@ function Navbar() {
                 {actionButton.title}
               </button>
           </div>
-
-
 
           {/* Mobile menu button */}
           <div className="md:hidden">
@@ -93,13 +88,13 @@ function Navbar() {
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {menuLinks.map((link) => (
-              <a
+              <Link
                 key={link.id}
-                href={link.link}
+                to={link.link}
                 className="text-gray-600 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
               >
                 {link.title}
-              </a>
+              </Link>
             ))}
             <button
               onClick={handleDownloadCV}
