@@ -15,7 +15,7 @@ function App() {
       <About />
       <Services />
       <Expertise />
-      <Footer />
+      
       </>
 
   );

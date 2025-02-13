@@ -23,34 +23,39 @@ const About = () => {
   };
 
   return (
-    <div className="main-container bg-gray-100 border py-16">
-      <h1 className="text-center pb-16 text-5xl underline font-bold">
+    <div className="main-container bg-gray-100 border py-8 md:py-16">
+      <h1 className="text-center pb-8 md:pb-16 text-3xl md:text-5xl underline font-bold">
         About Me
       </h1>
 
-      <div className="flex flex-col md:flex-row items-center">
+      <div className="flex flex-col md:flex-row items-center gap-8 px-4 md:px-8">
         {/* image container */}
-        <div className="w-full flex justify-center">
+        <div className="w-full md:w-1/2 flex justify-center">
           <img
-            className="w-fit rounded-full my-2 shadow-lg"
+            className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full object-cover shadow-lg"
             src={data.image}
             alt="durgesh kumar tiwari"
           />
         </div>
-
         {/* text container */}
-        <div className="w-full flex justify-center">
-          <div className="space-y-5 w-2/3">
-            <h1 className="text-5xl font-semibold">{data.title}</h1>
-            <p className={`transition-all duration-300 ${isExpanded ? "h-auto" : "h-24 overflow-hidden"}`}>
+        <div className="w-full md:w-1/2">
+          <div className="space-y-4 md:space-y-5 w-full md:w-5/6 mx-auto">
+            <h1 className="text-3xl md:text-5xl font-semibold text-center md:text-left">
+              {data.title}
+            </h1>
+            <p className={`text-sm md:text-base transition-all duration-300 ${
+              isExpanded ? "h-auto" : "h-20 md:h-24 overflow-hidden"
+            }`}>
               {data.desc1}
             </p>
-            <button 
-              className="bg-orange-500 px-3 py-2 text-2xl rounded-full shadow-lg hover:bg-orange-600 transition-colors duration-300"
-              onClick={handleReadMore}
-            >
-              {isExpanded ? "Show Less" : data.actionButton.title}
-            </button>
+            <div className="flex justify-center md:justify-start">
+              <button 
+                className="bg-orange-500 px-3 py-2 text-xl md:text-2xl rounded-full shadow-lg hover:bg-orange-600 transition-colors duration-300"
+                onClick={handleReadMore}
+              >
+                {isExpanded ? "Show Less" : data.actionButton.title}
+              </button>
+            </div>
           </div>
         </div>
       </div>
